@@ -13,9 +13,35 @@ properties:
   cloud-provider:
     type:
       description: "Type of Cloud Provider to use"
-      example: gce
+      example: gce, vsphere
     gce:
       project-id:
         description: Google Cloud project id. Required when cloud-provider.type is gce
       network-name:
         description: Google Cloud network name. Required when cloud-provider.type is gce
+    vsphere:
+      user:
+        description: User name for vCenter
+      password:
+        description: Password for vCenter
+      server:
+        description: IP/URL for vCenter
+      port:
+        description: Default 443 for vCenter
+        default: 443
+      insecure-flag:
+        description: set to 1 if the host above uses a self-signed cert
+        default: 0
+      datacenter:
+        description: Datacenter to be used
+      datastore:
+        description: Datastore to use for provisioning volumes using storage classes/dynamic provisioning
+      working-dir:
+        description: Folder in which VMs are provisioned, can be null
+        default:
+      vm-uuid:
+        description: VM Instance UUID of virtual machine which can be retrieved from instanceUuid property in VmConfigInfo, or also set as vc.uuid in VMX file. If empty, will be retrieved from sysfs (requires root)
+        default:
+      scsicontrollertype:
+        description: vSphere vSCSI adapter type name
+        default: pvscsi
